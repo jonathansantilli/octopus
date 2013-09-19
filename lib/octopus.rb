@@ -95,6 +95,7 @@ module Octopus
   def self.close_connection
     if @connection
       @connection.close
+      puts "Connection Closed!!!"
     end
   end
 
