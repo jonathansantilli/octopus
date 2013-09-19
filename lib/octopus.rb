@@ -95,6 +95,7 @@ module Octopus
   def self.close_connection
     if @connection
       @connection.close
+      puts "Connection close"
     end
   end
 
@@ -106,6 +107,8 @@ module Octopus
     else
       yield
     end
+    puts "Calling to close connection"
+    close_connection
   end
 end
 
