@@ -92,6 +92,7 @@ module Octopus
       conn.run_queries_on_shard(shard, &block)
     else
       yield
+      conn.close
     end
   end
 end
