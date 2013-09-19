@@ -89,7 +89,7 @@ module Octopus
   end
   
   def self.connection
-    @connection = ActiveRecord::Base.connection
+    @connection ||= ActiveRecord::Base.connection
   end
   
   def self.close_connection
