@@ -6,6 +6,9 @@ require "yaml"
 require "erb"
 
 module Octopus
+  
+  @connection = nil
+  
   def self.env()
     @env ||= 'octopus'
   end
@@ -84,15 +87,22 @@ module Octopus
     config[rails_env()] = HashWithIndifferentAccess.new(shards)
     ActiveRecord::Base.connection.initialize_shards(@config)
   end
+  
+  def self.connection
+    @connection = ActiveRecord::Base.connection
+  end
+  
+  def self.close_connection
+    @connection.close
+  end
 
   def self.using(shard, &block)
-    conn = ActiveRecord::Base.connection
+    conn = connection
 
     if conn.is_a?(Octopus::Proxy)
       conn.run_queries_on_shard(shard, &block)
     else
       yield
-      conn.close
     end
   end
 end
