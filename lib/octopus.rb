@@ -90,6 +90,7 @@ module Octopus
   
   def self.connection
     @connection = ActiveRecord::Base.connection
+    puts "Connectiong..."
   end
   
   def self.close_connection
