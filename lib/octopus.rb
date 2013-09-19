@@ -95,7 +95,6 @@ module Octopus
   def self.close_connection
     if @connection
       @connection.close
-      puts "Connection Closed!!!"
     end
   end
 
@@ -106,8 +105,6 @@ module Octopus
       conn.run_queries_on_shard(shard, &block)
     else
       yield
-       puts "CALLING Closed Connection!!!"
-       close_connection
     end
   end
 end
