@@ -107,8 +107,7 @@ module Octopus
     else
       yield
     end
-    puts "Calling to close connection"
-    close_connection
+    
   end
 end
 
