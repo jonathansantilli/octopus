@@ -90,11 +90,11 @@ module Octopus
   
   def self.connection
     @connection = ActiveRecord::Base.connection
-    puts "Connectiong..."
   end
   
   def self.close_connection
-    @connection.close
+    if @connection
+      @connection.close
   end
 
   def self.using(shard, &block)
