@@ -106,7 +106,8 @@ module Octopus
       conn.run_queries_on_shard(shard, &block)
     else
       yield
-      close_connection
+       puts "CALLING Closed Connection!!!"
+       close_connection
     end
   end
 end
