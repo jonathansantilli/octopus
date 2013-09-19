@@ -89,19 +89,16 @@ module Octopus
   end
   
   def self.connection
-    @connection ||= ActiveRecord::Base.connection
+    @connection = ActiveRecord::Base.connection
   end
   
   def self.close_connection
-    if @connection
-      @connection.close
-      puts "Connection close"
-    end
+    @connection.close
   end
 
   def self.using(shard, &block)
     conn = connection
-
+    
     if conn.is_a?(Octopus::Proxy)
       conn.run_queries_on_shard(shard, &block)
     else
